@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="light dark">
+<meta name="description" content="Self-contained interactive classroom activities. No login, no installation, works offline on phones, tablets and Chromebooks.">
+<title>Interactive Educational Resources</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%23141a3a'/%3E%3Cpath d='M12 9.5 23 16l-11 6.5z' fill='%23fff'/%3E%3C/svg%3E">
+<script>
+(function(){var v;try{v=localStorage.getItem("edu-theme")}catch(e){}
+if(v!=="light"&&v!=="dark"&&v!=="mono"){v=(typeof matchMedia==="function"&&matchMedia("(prefers-color-scheme: dark)").matches)?"dark":"light"}
+document.documentElement.setAttribute("data-theme",v)})();
+</script>
+<link rel="stylesheet" href="assets/css/theme.css">
+<link rel="stylesheet" href="assets/css/hub.css">
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="site-head">
+<div class="wrap">
+<a class="brand" href="./">Interactive Educational Resources<span>Classroom activities</span></a>
+<nav class="site-nav" aria-label="Sections">
+<a href="#resources" aria-current="true">Resources</a>
+<a href="#teachers">For teachers</a>
+<a href="#add">Add a resource</a>
+</nav>
+<div data-theme-switch></div>
+</div>
+</header>
+
+<main id="main">
+
+<section class="hero">
+<div class="wrap">
+<p class="eyebrow">Free · No sign-up · Works offline</p>
+<h1>Ready-to-use activities for your classroom</h1>
+<p class="lead">Every activity is a single self-contained page. Open it in any browser, project it, or hand out the link. Nothing to install, no student accounts, and it keeps working when the school Wi-Fi doesn't.</p>
+</div>
+</section>
+
+<section class="sec" id="resources" aria-labelledby="resources-h">
+<div class="wrap">
+<div class="sec-head">
+<h2 id="resources-h">All resources</h2>
+<p class="count" data-resource-count></p>
+</div>
+<div class="grid" data-resource-grid></div>
+<p class="hint more" data-resource-more>More activities are on the way. Each new one is a single folder plus one entry in the resource list — see <a href="#add">Add a resource</a>.</p>
+</div>
+</section>
+
+<section class="sec" id="teachers" aria-labelledby="teachers-h">
+<div class="wrap">
+<div class="sec-head">
+<h2 id="teachers-h">For teachers</h2>
+</div>
+<ul class="notes">
+<li>
+<h3>Pairs and small groups</h3>
+<p>Activities are designed for two or more learners working together at one device, so they suit a single projected Chromebook as well as individual phones.</p>
+</li>
+<li>
+<h3>Print-and-project friendly</h3>
+<p>Large type, high contrast and a monochrome option, so slides stay legible on a washed-out projector or a photocopied worksheet.</p>
+</li>
+<li>
+<h3>No accounts, ever</h3>
+<p>Nothing is collected and nothing is stored on a server. Student answers live in the page and disappear when the tab closes.</p>
+</li>
+</ul>
+</div>
+</section>
+
+<section class="sec" id="add" aria-labelledby="add-h">
+<div class="wrap">
+<div class="sec-head">
+<h2 id="add-h">Add a resource</h2>
+</div>
+<p class="lead" style="margin:0 0 16px">Activities are plain HTML files, so adding one is a two-minute job: create a folder, then add its entry to the list. Anyone can contribute — open a pull request.</p>
+<ol class="notes" style="list-style:none;counter-reset:step">
+<li>
+<h3>Create the folder</h3>
+<p>Add <code>my-activity/index.html</code> at the repository root, using <code>theme.css</code> for the design tokens so it matches the rest of the site.</p>
+</li>
+<li>
+<h3>Add one list entry</h3>
+<p>Append a title, link, subject, level and one-sentence summary to <code>assets/js/resources.js</code>. The card is generated for you.</p>
+</li>
+<li>
+<h3>Commit and open a PR</h3>
+<p>Push to a branch and open a pull request. GitHub Pages rebuilds the site on its own.</p>
+</li>
+</ol>
+</div>
+</section>
+
+</main>
+
+<footer class="site-foot">
+<div class="wrap">
+<p>Interactive Educational Resources — free to use, adapt and share.</p>
+<p>Built as static pages, hosted on GitHub Pages.</p>
+</div>
+</footer>
+
+<script src="assets/js/theme.js" defer></script>
+<script src="assets/js/resources.js" defer></script>
+</body>
+</html>
