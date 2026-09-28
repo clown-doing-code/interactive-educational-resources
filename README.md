@@ -12,15 +12,14 @@ school network, opened from a USB stick, or shared as a single link.
 ```
 index.html                 Landing page / resource hub
 reported-speech/           Party Planner – Reported Speech (speaking activity)
-assets/css/theme.css       Design tokens for all three themes, base styles, theme switcher
+assets/css/theme.css       Design tokens, base styles, skip link
 assets/css/hub.css         Landing page layout
-assets/js/theme.js         Theme switching + persistence (defines window.EduTheme)
 assets/js/resources.js     Resource list + card renderer (defines window.EduResources)
 ```
 
-`theme.css` and `theme.js` are shared by every page. Page-specific CSS lives in that page's
-own `<style>` block, so an activity folder stays portable — copy it out and it still works,
-as long as it keeps its two `<link>`/`<script>` references.
+`theme.css` is shared by every page. Page-specific CSS lives in that page's own `<style>`
+block, so an activity folder stays portable — copy it out and it still works, as long as it
+keeps its `../assets/css/theme.css` reference.
 
 ## Adding a resource
 
@@ -46,43 +45,53 @@ as long as it keeps its two `<link>`/`<script>` references.
 
 3. Commit, push, and open a pull request. GitHub Pages rebuilds on its own.
 
-## Themes
+## Colour
 
-Three themes, chosen with the switcher in the header and remembered in `localStorage`:
+The site is deliberately **monochrome**: black on white, with a small set of neutral greys.
+There is no theme switcher and no dark mode. Two reasons:
 
-- **Light** — default.
-- **Dark** — follows `prefers-color-scheme` until the visitor picks a theme explicitly.
-- **Mono** — black and white only, for poor printers and washed-out projectors.
+- Activities get projected, photocopied and printed. Greyscale survives a washed-out
+  projector and a black-and-white photocopier, and it means a single sheet of rules covers
+  every medium.
+- Colour is an unreliable signal in a classroom anyway — colour-blind learners, bad
+  screens, a bad printer. If meaning only exists in a hue, it is gone.
 
-Each theme is a set of custom properties on `:root`. Override only the ones you need:
+Tokens live on `:root` in `theme.css`. Override only what you need:
 
 | Token | Role |
 | --- | --- |
-| `--bg` `--card` `--line` `--soft` | Surfaces and separators |
+| `--bg` `--card` `--line` `--soft` | Surfaces, rules and separators |
 | `--text` `--muted` `--acc` `--acc-ink` | Text and accent |
-| `--yb --yi --ys` / `--nb --ni --ns` / `--mb --mi --ms` | yes / no / maybe: soft fill, ink, strong fill |
-| `--bw` | Border width — 2px normally, 3px in mono so edges survive greyscale |
-| `--radius` `--radius-sm` `--radius-xs` | Corner radii — 0 in mono |
+| `--yb --yi` / `--nb --ni` / `--mb --mi` | yes / no / maybe: fill and ink |
+| `--bw` | Border width |
+| `--radius` `--radius-sm` `--radius-xs` | Corner radii — currently all 0 |
+| `--shell` `--pad` | Centred content width and side gutters |
 | `--font` | Type stack |
 
-A theme is selected by `data-theme` on `<html>`. The inline script in each `<head>` sets it
-from `localStorage` before first paint to avoid a flash of the wrong theme. If you add a page,
-copy that script into its `<head>` — it must stay inline and must run before the stylesheet
-is painted.
+### The fill ladder: never let colour carry meaning
 
-### Accessibility in mono
+Because there is no hue to lean on, a three-way choice has to be distinguishable by fill
+alone. `reported-speech/index.html` sets the pattern with the yes/no/maybe tokens, and the
+same three tokens drive the segmented buttons and the answer badges:
 
-Mono themes cannot use hue to signal meaning, so each activity should give its yes/no/maybe
-states a distinct **fill ladder** instead. `reported-speech/index.html` shows the pattern:
-solid black for "yes", white with a thick inset ring for "no", light grey for "maybe", and
-text labels everywhere. Colours were never the only cue in the first place, so all three
-themes stay readable.
+| State | Fill | Extra |
+| --- | --- | --- |
+| yes | `--yb` solid black | ink `--yi` white |
+| no | `--nb` white | ink `--ni` black, plus a border |
+| maybe | `--mb` light grey | ink `--mi` black, plus a border |
+
+A border is what makes the white "no" state visible on a white card. **Always ship a text
+label alongside the fill** — the fill ranks the options, the word names them. That is what
+keeps the activity usable in greyscale, and it is the accessibility rule for the site.
 
 ## Conventions worth keeping
 
-- The activity's own state is plain JS objects rendered via `innerHTML`; there is no framework.
-- Type is Trebuchet MS / Segoe UI / system-ui at an 18px base, sized for classroom projectors.
-- Controls meet a 44px minimum target, focus is always visible, and `prefers-reduced-motion`
+- Activity state is plain JS objects rendered via `innerHTML`; there is no framework, and no
+  build step of any kind.
+- Type is Trebuchet MS / Segoe UI / system-ui at an 18px base on a 1.6 line height, sized for
+  classroom projectors.
+- Spacing is fluid `clamp()`, so there are no breakpoint-specific padding values to maintain.
+- Controls meet a 40px minimum target, focus is always visible, and `prefers-reduced-motion`
   is honoured globally in `theme.css`.
 - Every page needs a skip link, a single `<h1>`, and labelled landmark regions.
 

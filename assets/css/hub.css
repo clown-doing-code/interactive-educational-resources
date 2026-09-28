@@ -1,60 +1,365 @@
-.wrap{width:100%;max-width:var(--shell);margin:0 auto;padding:0 20px}
+.wrap {
+    width: 100%;
+    max-width: var(--shell);
+    margin: 0 auto;
+    padding: 0 var(--pad);
+}
 
-.site-head{border-bottom:var(--bw) solid var(--line);background:var(--card)}
-.site-head .wrap{display:flex;flex-wrap:wrap;align-items:center;gap:12px 20px;padding-top:14px;padding-bottom:14px}
-.brand{display:flex;align-items:center;min-height:40px;font-weight:800;font-size:1.02rem;line-height:1.2;color:var(--text);text-decoration:none;margin-right:auto;max-width:20ch}
-.brand span{display:block;font-weight:400;font-size:.8rem;color:var(--muted);letter-spacing:.03em}
-.brand:hover{text-decoration:underline}
+body {
+    text-align: center;
+}
 
-.site-nav{display:flex;gap:4px;flex-wrap:wrap}
-.site-nav a{font-weight:700;font-size:.92rem;color:var(--muted);text-decoration:none;padding:8px 12px;border-radius:var(--radius-xs);min-height:40px;display:flex;align-items:center}
-.site-nav a:hover{background:var(--soft);color:var(--text)}
-.site-nav a[aria-current]{color:var(--text);background:var(--soft);box-shadow:inset 0 0 0 2px var(--line)}
+/* Fallback only: the real value is measured at runtime by resources.js, because
+   the header's height depends on how the nav labels wrap at each width. */
+:root {
+    --head-h: 88px;
+}
 
-.hero{padding:44px 0 8px}
-.eyebrow{font-weight:700;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin:0 0 10px}
-.hero h1{font-size:clamp(1.85rem,5.2vw,2.9rem);letter-spacing:-.015em;max-width:20ch}
-.lead{font-size:clamp(1.02rem,2.4vw,1.18rem);color:var(--muted);max-width:62ch;margin:14px 0 0}
+.site-head {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    border-bottom: var(--bw) solid var(--line);
+    background: var(--card);
+}
+.site-head .wrap {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px 36px;
+    padding-top: clamp(14px, 2vw, 20px);
+    padding-bottom: clamp(14px, 2vw, 20px);
+}
+.brand {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 40px;
+    font-weight: 800;
+    font-size: 1.05rem;
+    line-height: 1.2;
+    letter-spacing: -0.01em;
+    color: var(--text);
+    text-decoration: none;
+}
+.brand span {
+    font-weight: 400;
+    font-size: 0.75rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 3px;
+}
+.brand:hover {
+    opacity: 0.6;
+}
 
-.sec{padding:40px 0}
-.sec + .sec{border-top:var(--bw) solid var(--line)}
-.sec-head{display:flex;align-items:baseline;gap:12px;flex-wrap:wrap;margin:0 0 20px}
-.sec-head h2{font-size:clamp(1.25rem,3vw,1.5rem);letter-spacing:-.01em}
-.count{font-weight:700;font-size:.85rem;color:var(--muted)}
+.site-nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 32px;
+}
+.site-nav a {
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    color: var(--muted);
+    text-decoration: none;
+    padding: 4px 0;
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid transparent;
+}
+.site-nav a:hover {
+    color: var(--text);
+    border-bottom-color: var(--line);
+}
+.site-nav a[aria-current] {
+    color: var(--text);
+    border-bottom-color: var(--text);
+}
 
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px}
+.hero {
+    padding: clamp(36px, 5.5vw, 56px) 0 clamp(16px, 2.5vw, 24px);
+}
+.eyebrow {
+    font-weight: 700;
+    font-size: 0.75rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0 0 14px;
+}
+.hero h1 {
+    font-size: clamp(2rem, 5.6vw, 3.4rem);
+    letter-spacing: -0.03em;
+    max-width: 22ch;
+    margin: 0 auto;
+}
+.lead {
+    font-size: clamp(1.05rem, 2.4vw, 1.22rem);
+    line-height: 1.55;
+    color: var(--muted);
+    max-width: 100ch;
+    margin: 18px auto 0;
+}
+.intro {
+    font-size: 1.02rem;
+    color: var(--muted);
+    max-width: 62ch;
+    margin: 0 auto clamp(16px, 2.5vw, 22px);
+}
+.sec .wrap > p:not([class]) {
+    max-width: 56ch;
+    margin-left: auto;
+    margin-right: auto;
+}
 
-.rcard{position:relative;display:flex;flex-direction:column;gap:0;background:var(--card);border:var(--bw) solid var(--line);border-radius:var(--radius);padding:20px 20px 18px;transition:transform .15s ease,box-shadow .15s ease}
-.rcard:hover{transform:translateY(-2px);box-shadow:0 6px 0 -2px var(--soft)}
-.rcard:focus-within{outline:3px solid var(--acc);outline-offset:3px}
-.rtags{display:flex;flex-wrap:wrap;gap:6px;margin:0 0 12px}
-.tag{font-weight:700;font-size:.72rem;letter-spacing:.03em;text-transform:uppercase;padding:4px 9px;border-radius:999px;background:var(--soft);color:var(--text)}
-.tag-alt{background:transparent;border:var(--bw) solid var(--line);color:var(--muted)}
-.rtitle{font-size:1.2rem;letter-spacing:-.01em}
-.rstretch{color:inherit;text-decoration:none}
-.rstretch:hover{text-decoration:underline;text-underline-offset:3px}
-.rstretch:focus-visible{outline:none}
-.rsummary{margin:8px 0 0;color:var(--muted);font-size:.95rem}
-.rmeta{margin:12px 0 0;font-size:.8rem;font-weight:700;letter-spacing:.03em;text-transform:uppercase;color:var(--muted)}
-.rcta{margin:auto 0 0;padding-top:14px;font-weight:700;font-size:.92rem;color:var(--acc)}
-.rcta span{display:inline-block;transition:transform .15s ease}
-.rcard:hover .rcta span{transform:translateX(3px)}
+.hero,
+.sec {
+    scroll-margin-top: calc(var(--head-h) + 8px);
+}
+.sec {
+    padding: clamp(36px, 5vw, 56px) 0;
+}
+.sec + .sec {
+    border-top: var(--bw) solid var(--line);
+}
+.sec-head {
+    margin: 0 0 clamp(16px, 2.5vw, 24px);
+}
+.sec-head h2 {
+    font-size: clamp(1.3rem, 3vw, 1.6rem);
+    letter-spacing: -0.02em;
+}
+.count {
+    display: block;
+    font-weight: 700;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 10px 0 0;
+}
 
-.more{margin:22px 0 0;padding:14px 16px;max-width:70ch}
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+    gap: clamp(16px, 2vw, 24px);
+}
 
-.notes{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;margin:0;padding:0;list-style:none}
-.notes li{background:var(--card);border:var(--bw) solid var(--line);border-radius:var(--radius);padding:18px}
-.notes h3{font-size:1rem;margin:0 0 6px}
-.notes p{margin:0;font-size:.93rem;color:var(--muted)}
+.rcard {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    background: var(--card);
+    border: var(--bw) solid var(--text);
+    padding: clamp(20px, 2.5vw, 28px);
+    transition:
+        background 0.16s ease,
+        color 0.16s ease;
+}
+.rcard:hover {
+    background: var(--text);
+    color: var(--bg);
+}
+.rcard:focus-within {
+    outline: 3px solid var(--text);
+    outline-offset: 4px;
+}
+.rtags {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 6px 16px;
+    margin: 0 0 16px;
+}
+.tag {
+    font-weight: 700;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+.rtitle {
+    font-size: clamp(1.15rem, 2vw, 1.32rem);
+    letter-spacing: -0.015em;
+}
+/* Whole card is the hit target: the title's ::after covers the card, so a click
+   anywhere on it follows the link. Positioned elements paint above the static
+   siblings, so no z-index is needed. */
+.rcard:has(.rstretch) {
+    cursor: pointer;
+}
+.rstretch {
+    color: inherit;
+    text-decoration: none;
+}
+.rstretch::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    /* Needed: the hover rule sets opacity on .rsummary/.rmeta, which promotes
+       them into their own stacking contexts. Without an explicit z-index they
+       outrank a z-index:auto overlay and swallow clicks meant for the card. */
+    z-index: 1;
+}
+.rstretch:hover {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+}
+.rstretch:focus-visible {
+    outline: none;
+}
+.rsummary {
+    margin: 12px 0 0;
+    font-size: 0.96rem;
+    color: var(--muted);
+}
+.rmeta {
+    margin: 16px 0 0;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+}
+.rcta {
+    margin: auto 0 0;
+    padding-top: 20px;
+    font-weight: 700;
+    font-size: 0.8rem;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+}
+.rcta span {
+    display: inline-block;
+    transition: transform 0.16s ease;
+}
+.rcard:hover .tag,
+.rcard:hover .rsummary,
+.rcard:hover .rmeta {
+    color: var(--bg);
+    opacity: 0.78;
+}
+.rcard:hover .rcta span {
+    transform: translateX(5px);
+}
 
-.site-foot{border-top:var(--bw) solid var(--line);margin-top:8px}
-.site-foot .wrap{display:flex;flex-wrap:wrap;gap:8px 20px;align-items:center;padding-top:18px;padding-bottom:26px;font-size:.88rem;color:var(--muted)}
-.site-foot p{margin:0}
-.site-foot a{color:var(--muted)}
+/* placeholder cards: announced as coming soon, never a link, never invert on hover */
+.rcard.is-soon,
+.rcard.is-soon:hover {
+    background: var(--bg);
+    color: var(--muted);
+}
+.rcard.is-soon .rtitle,
+.rcard.is-soon .rsummary,
+.rcard.is-soon .rmeta {
+    color: var(--muted);
+}
+/* exclude the status tag, which carries its own black background and needs
+   light text — muting it too would drop it to 2.8:1 */
+.rcard.is-soon .tag:not(.tag-soon) {
+    color: var(--muted);
+}
+.rcard.is-soon:hover .tag {
+    opacity: 1;
+}
+.tag-soon,
+.rcard:hover .tag-soon {
+    background: var(--text);
+    color: var(--bg);
+    padding: 2px 8px;
+}
 
-@media (max-width:640px){
-.hero{padding:32px 0 4px}
-.sec{padding:32px 0}
-.brand{max-width:none}
-.rcard:hover{transform:none}
+.more {
+    margin: clamp(16px, 2vw, 22px) auto 0;
+    padding: 14px 16px;
+    max-width: 72ch;
+}
+
+.notes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: clamp(16px, 2vw, 24px);
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.notes li {
+    background: var(--card);
+    border: var(--bw) solid var(--line);
+    padding: clamp(18px, 2.5vw, 24px);
+}
+.notes h3 {
+    font-size: 1rem;
+    letter-spacing: -0.01em;
+    margin: 0 0 8px;
+}
+.notes p {
+    margin: 0;
+    font-size: 0.94rem;
+    color: var(--muted);
+}
+.notes code {
+    font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    font-size: 0.9em;
+    background: var(--soft);
+    padding: 1px 5px;
+    white-space: nowrap;
+}
+
+.steps li h3 {
+    font-variant-numeric: tabular-nums;
+}
+
+.site-foot {
+    border-top: var(--bw) solid var(--line);
+}
+.site-foot .wrap {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    justify-content: center;
+    gap: 10px 36px;
+    padding-top: clamp(24px, 3.5vw, 36px);
+    padding-bottom: clamp(28px, 4vw, 40px);
+    font-size: 0.85rem;
+    color: var(--muted);
+}
+.site-foot p {
+    margin: 0;
+}
+
+/* Keep the nav on one scrollable row from this width down. The long labels
+   otherwise wrap to two, sometimes three, rows — which spiked the header to
+   ~190px right above the small-screen breakpoint. */
+@media (max-width: 1000px) {
+    .site-nav {
+        flex-wrap: nowrap;
+        justify-content: safe center;
+        gap: 18px;
+        overflow-x: auto;
+        scrollbar-width: none;
+    }
+    .site-nav::-webkit-scrollbar {
+        display: none;
+    }
+    .site-nav a {
+        white-space: nowrap;
+    }
+}
+
+@media (max-width: 640px) {
+    .site-head .wrap {
+        gap: 6px 22px;
+    }
+    .site-nav {
+        gap: 22px;
+    }
 }
