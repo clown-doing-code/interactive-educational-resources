@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Party Planner – Reported Speech</title>
+<style>
+:root{--bg:#eef1fb;--card:#fff;--line:#c9d0ee;--soft:#dfe4f7;--text:#141a3a;--muted:#55609a;--acc:#2b3a9e;--acc-ink:#fff;
+--yb:#d6f2df;--yi:#0f6b31;--ys:#1f9d4d;--nb:#fbdada;--ni:#a11f1f;--ns:#d33a3a;--mb:#fdefc6;--mi:#7d5300;--ms:#e8a90f;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0e1230;--card:#171d47;--line:#2e3775;--soft:#232b62;--text:#eaedfc;--muted:#a3adde;--acc:#9aa8ff;--acc-ink:#0e1230;--yb:#14402a;--yi:#8fe3ab;--nb:#4d1d1d;--ni:#ffa6a6;--mb:#4b3a10;--mi:#ffd97c}}
+:root[data-theme="dark"]{--bg:#0e1230;--card:#171d47;--line:#2e3775;--soft:#232b62;--text:#eaedfc;--muted:#a3adde;--acc:#9aa8ff;--acc-ink:#0e1230;--yb:#14402a;--yi:#8fe3ab;--nb:#4d1d1d;--ni:#ffa6a6;--mb:#4b3a10;--mi:#ffd97c}
+*{box-sizing:border-box}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+body{margin:0;background:var(--bg);color:var(--text);font:18px/1.45 "Trebuchet MS","Segoe UI",system-ui,sans-serif;-webkit-text-size-adjust:100%}
+main{max-width:560px;margin:0 auto;padding:16px 16px 110px}
+h1{font-size:27px;line-height:1.15;margin:6px 0}h2{font-size:20px;margin:0 0 4px}
+p{margin:0 0 12px}.muted{color:var(--muted);font-size:15px}
+.card{background:var(--card);border:2px solid var(--line);border-radius:22px;padding:22px 18px;margin:12px 0;min-height:290px}
+.name{font-weight:800;font-size:34px;line-height:1.1;margin:0 0 10px}
+.badge{display:inline-block;font-weight:800;font-size:22px;padding:6px 22px;border-radius:99px;margin:0 0 14px}
+.badge.yes{background:var(--yb);color:var(--yi)}.badge.no{background:var(--nb);color:var(--ni)}.badge.maybe{background:var(--mb);color:var(--mi)}
+.badge.sm{font-size:16px;padding:3px 14px;margin:0 6px 0 0}
+.msg{font-size:23px;line-height:1.35;margin:0}
+.btn{display:block;width:100%;font:inherit;font-weight:700;padding:16px;border-radius:14px;border:2px solid var(--acc);background:var(--acc);color:var(--acc-ink);cursor:pointer;margin:0 0 12px;text-align:center}
+.btn.ghost{background:transparent;color:var(--acc)}
+.btn:disabled{opacity:.35}
+.row{display:flex;gap:10px}.row .btn{margin:0}
+.seg{display:flex;gap:8px;margin:12px 0}
+.seg button{flex:1;font:inherit;font-weight:800;font-size:19px;padding:14px 4px;border-radius:14px;border:3px solid;cursor:pointer}
+.seg .yes{background:var(--yb);color:var(--yi);border-color:var(--yb)}.seg .no{background:var(--nb);color:var(--ni);border-color:var(--nb)}.seg .maybe{background:var(--mb);color:var(--mi);border-color:var(--mb)}
+.seg .yes.on{background:var(--ys);color:#fff;border-color:var(--ys)}.seg .no.on{background:var(--ns);color:#fff;border-color:var(--ns)}.seg .maybe.on{background:var(--ms);color:#2b1c00;border-color:var(--ms)}
+.seg button:disabled{opacity:.6}
+textarea{width:100%;font:inherit;padding:12px;border-radius:12px;border:2px solid var(--line);background:var(--bg);color:var(--text);resize:none;min-height:110px}
+textarea:focus,button:focus-visible{outline:3px solid var(--acc);outline-offset:2px}
+.dots{display:flex;justify-content:center;gap:9px;margin:4px 0 2px}
+.dots button{width:16px;height:16px;padding:0;border-radius:50%;border:2px solid var(--acc);background:transparent;cursor:pointer}
+.dots button.f{background:var(--soft)}.dots button.cur{background:var(--acc);transform:scale(1.25)}
+.count{text-align:center;font-weight:700;color:var(--muted);font-size:15px}
+nav{position:fixed;left:0;right:0;bottom:0;display:flex;gap:8px;padding:10px 12px calc(10px + env(safe-area-inset-bottom,0px));background:var(--card);border-top:2px solid var(--line)}
+nav button{flex:1;font:inherit;font-weight:700;padding:13px 4px;border-radius:12px;border:2px solid var(--line);background:transparent;color:var(--muted);cursor:pointer}
+nav button.on{background:var(--acc);border-color:var(--acc);color:var(--acc-ink)}
+.lbl{font-weight:700;font-size:15px;color:var(--muted);margin:12px 0 2px}
+.big{font-size:44px;font-weight:800;color:var(--acc);line-height:1}
+.hint{background:var(--soft);border-radius:12px;padding:10px 12px;margin:0 0 12px;font-size:16px}
+.pick{background:var(--soft);border-radius:14px;padding:16px;margin:12px 0;font-weight:700}
+.res{font-weight:800}.res.ok{color:var(--yi)}.res.x{color:var(--ni)}
+</style>
+</head>
+<body>
+<main id="app"></main>
+<nav id="nav" hidden></nav>
+<script>
+const D={
+A:{mine:[["Lily","Yes","She will bring a deck of cards."],["Juan","No","His car is being repaired."],["Kim","Yes","She will bring the dessert."],["Lee","Yes","He will bring appetizers."],["Mari","Maybe","She might go to her dance class."],["Nick","No","He has a date and can't come."],["Pia","Maybe",null]],
+ model:{Lily:"She said she would bring a deck of cards.",Juan:"He said his car was being repaired.",Kim:"She said she would bring the dessert.",Lee:"He said he would bring appetizers.",Mari:"She said she might go to her dance class.",Nick:"He said he had a date and couldn't come."}},
+B:{mine:[["Aki","Yes","She is planning to bring her guitar."],["Bob","No","He has a headache."],["Carla","Maybe","She wants to watch a movie on TV."],["Dustin","Yes","He'll bring potato chips."],["Eve","No","She's been working a lot and is tired."],["Felix","No","His dog Rover died yesterday."],["Gina","Yes",null]],
+ model:{Aki:"She said she was planning to bring her guitar.",Bob:"He said he had a headache.",Carla:"She said she wanted to watch a movie on TV.",Dustin:"He said he would bring potato chips.",Eve:"She said she had been working a lot and was tired.",Felix:"He said his dog Rover had died the day before."}}
+};
+const S={role:null,tab:"info",ans:{},own:"",done:false,idx:{info:0,ask:0,result:0}};
+const app=document.getElementById("app"),nav=document.getElementById("nav");
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const other=()=>S.role==="A"?"B":"A";
+const badge=(c,sm)=>`<span class="badge ${c.toLowerCase()} ${sm?"sm":""}">${c}</span>`;
+
+function keep(){document.querySelectorAll("textarea[data-k]").forEach(t=>{const k=t.dataset.k;if(k==="own")S.own=t.value;else(S.ans[k]=S.ans[k]||{}).msg=t.value})}
+function go(t){if(t==="result"&&!S.done)return;keep();S.tab=t;render();window.scrollTo(0,0)}
+function pickRole(r){S.role=r;S.tab="info";S.ans={};S.own="";S.done=false;S.idx={info:0,ask:0,result:0};render()}
+function setC(n,v){if(S.done)return;keep();(S.ans[n]=S.ans[n]||{}).c=v;render()}
+function jump(i){keep();S.idx[S.tab]=Math.max(0,Math.min(6,i));render();window.scrollTo(0,0)}
+function step(d){jump(S.idx[S.tab]+d)}
+
+function deck(fillFn){const i=S.idx[S.tab];
+ return `<div class="count">Card ${i+1} of 7</div><div class="dots">${[0,1,2,3,4,5,6].map(k=>`<button aria-label="Card ${k+1}" class="${k===i?"cur":fillFn(k)?"f":""}" onclick="jump(${k})"></button>`).join("")}</div>`}
+function pager(lastBtn){const i=S.idx[S.tab];
+ return `<div class="row"><button class="btn ghost" ${i===0?"disabled":""} onclick="step(-1)">‹ Back</button>${i===6?lastBtn:`<button class="btn" onclick="step(1)">Next ›</button>`}</div>`}
+
+function render(){
+ if(!S.role){nav.hidden=true;
+  app.innerHTML=`<h1>Party Planner</h1><p class="muted">Reported speech · Speaking activity</p>
+  <div class="card" style="min-height:0"><p>You and your partner are planning a party. Each of you contacted seven guests. <b>Ask your partner questions</b> and <b>report</b> what the guests said.</p>
+  <p class="muted" style="margin:0">Keep your screen private. Talk – don't show!</p></div>
+  <h2>Choose your role</h2><p class="muted">Your teacher will tell you: A or B.</p>
+  <button class="btn" onclick="pickRole('A')">I'm Student A</button>
+  <button class="btn ghost" onclick="pickRole('B')">I'm Student B</button>`;return}
+ nav.hidden=false;
+ nav.innerHTML=[["info","My info"],["ask","Ask partner"],["result","Results"]].map(([k,l])=>{const lock=k==="result"&&!S.done;return `<button class="${S.tab===k?"on":""}" ${lock?'disabled style="opacity:.5"':""} onclick="go('${k}')">${lock?"🔒 ":""}${l}</button>`}).join("");
+ ({info:vInfo,ask:vAsk,result:vRes})[S.tab]();
+}
+
+function vInfo(){
+ const me=D[S.role].mine,i=S.idx.info,[n,c,m]=me[i];
+ app.innerHTML=`<h1>Student ${S.role}: my guests</h1><p class="muted">Your partner will ask about these guests. Answer in <b>reported speech</b>.</p>
+ ${deck(()=>false)}
+ <div class="card"><div class="name">${n}</div>${badge(c)}
+ ${m?`<p class="msg">${esc(m)}</p>`:`<div class="lbl">Use your own idea. Write a message:</div><textarea data-k="own" placeholder="What did ${n} say?">${esc(S.own)}</textarea>`}</div>
+ <div class="hint">Your partner may ask: “Is ${n} coming?”</div>
+ ${pager(`<button class="btn" onclick="go('ask')">Ask partner ›</button>`)}
+ <button class="btn ghost" style="margin-top:12px" onclick="if(confirm('Change role? Your answers will be erased.')){S.role=null;render()}">Change role</button>`;
+}
+
+function vAsk(){
+ const pg=D[other()].mine,i=S.idx.ask,n=pg[i][0],a=S.ans[n]||{};
+ app.innerHTML=`<h1>Ask your partner</h1><p class="muted">Ask about each guest. Write the answer in <b>reported speech</b>.</p>
+ ${deck(k=>{const b=S.ans[pg[k][0]]||{};return b.c&&(b.msg||"").trim()})}
+ <div class="card"><div class="name">${n}</div>
+ <div class="hint">Ask: “Is ${n} coming? What did they say?”</div>
+ <div class="seg">${["Yes","No","Maybe"].map(v=>`<button class="${v.toLowerCase()} ${a.c===v?"on":""}" ${S.done?"disabled":""} onclick="setC('${n}','${v}')">${v}</button>`).join("")}</div>
+ <textarea data-k="${n}" ${S.done?"readonly":""} placeholder="${n} said...">${esc(a.msg||"")}</textarea></div>
+ ${pager(S.done?`<button class="btn" onclick="go('result')">View results</button>`:`<button class="btn" onclick="submit()">Submit</button>`)}
+ ${S.done?"":`<p class="muted" style="text-align:center">Results unlock after you submit.</p>`}`;
+}
+
+function submit(){keep();const pg=D[other()].mine;
+ const miss=pg.filter(([n])=>{const a=S.ans[n]||{};return !a.c||!(a.msg||"").trim()}).length;
+ if(!confirm((miss?miss+" guest(s) still have no answer. ":"")+"Submit your answers? You can't change them after."))return;
+ S.done=true;S.tab="result";S.idx.result=0;render();window.scrollTo(0,0)}
+
+function vRes(){
+ if(!S.done){go("ask");return}
+ const P=D[other()],pg=P.mine,i=S.idx.result,[n,c,m]=pg[i],a=S.ans[n]||{},ok=a.c===c;
+ const right=pg.filter(([g,cc])=>(S.ans[g]||{}).c===cc).length;
+ app.innerHTML=`<h1>Results</h1><p class="muted">Yes / No / Maybe correct: <b>${right}/7</b></p>
+ ${deck(k=>(S.ans[pg[k][0]]||{}).c===pg[k][1])}
+ <div class="card"><div class="name">${n}</div>${badge(c)}
+ <div class="lbl">Your choice</div><p>${a.c?badge(a.c,1):"<i class='muted'>none</i>"} <span class="res ${ok?"ok":"x"}">${ok?"✓ Correct":"✗ Not quite"}</span></p>
+ <div class="lbl">You wrote</div><p>${a.msg?esc(a.msg):"<i class='muted'>(empty)</i>"}</p>
+ <div class="lbl">Model answer</div><p style="margin:0">${m?esc(P.model[n]):"Own idea – compare with your partner."}</p></div>
+ ${pager(`<button class="btn ghost" onclick="if(confirm('Start over?')){S.role=null;render()}">Start over</button>`)}
+ <div class="pick">Now compare with your partner: who is coming, who isn't, and who might come? Report it aloud: “${pg[0][0]} said she…”</div>
+ <p class="muted">Messages can be correct in different ways. Check verb tense and pronouns.</p>`;
+}
+
+let tx=0;
+app.addEventListener("touchstart",e=>{tx=e.touches[0].clientX},{passive:true});
+app.addEventListener("touchend",e=>{if(!S.role||e.target.closest("textarea"))return;const d=e.changedTouches[0].clientX-tx;if(Math.abs(d)>70)step(d<0?1:-1)},{passive:true});
+render();
+</script>
+</body>
+</html>
